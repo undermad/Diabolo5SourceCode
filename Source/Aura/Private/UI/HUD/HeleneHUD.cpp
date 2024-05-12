@@ -4,6 +4,7 @@
 #include "UI/HUD/HeleneHUD.h"
 #include "UI/Widget/HeleneUserWidget.h"
 #include "Blueprint/UserWidget.h"
+#include "UI/WidgetController/AttributeMenuWidgetController.h"
 #include "UI/WidgetController/OverlayWidgetController.h"
 
 UOverlayWidgetController* AHeleneHUD::GetOverlayWidgetController(const FWidgetControllerParams& WCParams)
@@ -15,6 +16,17 @@ UOverlayWidgetController* AHeleneHUD::GetOverlayWidgetController(const FWidgetCo
 		OverlayWidgetController->BindCallbacksToDependencies();
 	}
 	return OverlayWidgetController;
+}
+
+UAttributeMenuWidgetController* AHeleneHUD::GetAttributeMenuWidgetController(const FWidgetControllerParams WCParams)
+{
+	if(AttributeMenuWidgetController == nullptr)
+	{
+		AttributeMenuWidgetController = NewObject<UAttributeMenuWidgetController>(this, AttributeMenutWidgetControllerClass);
+		AttributeMenuWidgetController->SetWidgetControllerParams(WCParams);
+		AttributeMenuWidgetController->BindCallbacksToDependencies();
+	}
+	return AttributeMenuWidgetController;
 }
 
 void AHeleneHUD::InitOverlay(APlayerController* PC, APlayerState* PS, UAbilitySystemComponent* ASC, UAttributeSet* AS)

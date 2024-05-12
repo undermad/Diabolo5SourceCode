@@ -18,4 +18,5 @@ void UHeleneWidgetController::BroadcastInitialValues()
 
 void UHeleneWidgetController::BindCallbacksToDependencies()
 {
+	
 }
